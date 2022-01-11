@@ -1,0 +1,12 @@
+docker start -i dazzling_heisenberg
+apt-get update
+apt-get -y install nano
+nano /usr/src/app/index.js
+console.log('Hello World')
+^G
+q
+^S
+^X
+cd /usr/src/app
+cat index.js
+exit
