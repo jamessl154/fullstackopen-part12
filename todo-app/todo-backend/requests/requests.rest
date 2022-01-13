@@ -11,4 +11,17 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/todos/61e029f2d86da119acef15bd
+DELETE http://localhost:3000/todos/61e03b8aaac5bb51f0e9fff5
+
+###
+
+GET http://localhost:3000/todos/61e0375beeb32537485bb4c3
+
+###
+
+PUT http://localhost:3000/todos/61e0375beeb32537485bb4c3
+Content-Type: application/json
+
+{
+  "text": "clean your room, then do the dishes!"
+}
