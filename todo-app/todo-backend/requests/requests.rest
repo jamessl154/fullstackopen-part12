@@ -1,0 +1,14 @@
+GET http://localhost:3000/todos
+
+###
+
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+  "text": "clean your room"
+}
+
+###
+
+DELETE http://localhost:3000/todos/61e029f2d86da119acef15bd
