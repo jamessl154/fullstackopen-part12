@@ -18,10 +18,14 @@ if (!REDIS_URL) {
   })
     
   getAsync = promisify(client.get).bind(client)
-  setAsync = promisify(client.set).bind(client)    
+  setAsync = promisify(client.set).bind(client)
+  incrAsync = promisify(client.incr).bind(client)
+  decrAsync = promisify(client.decr).bind(client)
 }
 
 module.exports = {
   getAsync,
-  setAsync
+  setAsync,
+  incrAsync,
+  decrAsync
 }

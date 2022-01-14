@@ -6,7 +6,7 @@ POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
-  "text": "clean your room"
+  "text": "fix redis"
 }
 
 ###
