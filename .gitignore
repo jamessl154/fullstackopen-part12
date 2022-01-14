@@ -1,3 +1,4 @@
 node_modules/
 directory/
 mongo_data/
+redis_data/
