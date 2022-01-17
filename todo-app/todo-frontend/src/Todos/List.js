@@ -13,30 +13,12 @@ const TodoList = ({ todos, deleteTodo, completeTodo }) => {
 
   return (
     <>
-      {todos.map(todo => {
-        const doneInfo = (
-          <>
-            <span>This todo is done</span>
-            <span>
-              <button onClick={onClickDelete(todo)}> Delete </button>
-            </span>
-          </>
-        )
-
-        const notDoneInfo = (
-          <>
-            <span>
-              This todo is not done
-            </span>
-            <span>
-              <button onClick={onClickDelete(todo)}> Delete </button>
-              <button onClick={onClickComplete(todo)}> Set as done </button>
-            </span>
-          </>
-        )
-
-        return <Todo done={todo.done ? doneInfo : notDoneInfo} text={todo.text} />
-      })}
+      {todos.map(todo => <Todo
+        done={todo.done}
+        text={todo.text}
+        onClickComplete={onClickComplete(todo)}
+        onClickDelete={onClickDelete(todo)}
+      />)}
     </>
   )
 }
