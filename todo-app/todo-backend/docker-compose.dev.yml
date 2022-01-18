@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   server:
-    image: development
+    image: todo-backend-development
     build:
       context: .
       dockerfile: dev.Dockerfile
