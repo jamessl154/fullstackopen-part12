@@ -1,15 +1,43 @@
 services:
+  backend-dev:
+    image: todo-backend-development
+    build:
+      context: ./todo-backend
+      dockerfile: dev.Dockerfile
+    environment:
+      - REDIS_URL=//redis:6379
+      - MONGO_URL=mongodb://the_username:the_password@mongo:27017/the_database
+    volumes:
+      - ./todo-backend:/usr/src/backend-dev
+    expose: # "Expose ports without publishing them to the host machine - they’ll only be accessible to linked services"
+      - "3000" # https://docs.docker.com/compose/compose-file/compose-file-v3/#expose
+  mongo:
+    image: mongo
+    # don't need to specify ports for mongo and redis, we don't need access from the host in this case
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: the_database
+    volumes: 
+      - ./todo-backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./todo-backend/mongo_data:/data/db
+  redis:
+    image: redis
+    command: ['redis-server', '--appendonly', 'yes'] # https://redis.io/topics/persistence#append-only-file
+    volumes:
+      - ./todo-backend/redis_data:/data
   frontend-dev:
     image: todo-frontend-development
     build:
       context: ./todo-frontend
       dockerfile: dev.Dockerfile
     volumes:
-      - ./todo-frontend:/usr/src/app
-    ports:
-      - 3000:3000
+      - ./todo-frontend:/usr/src/frontend-dev
+    expose:
+      - "3000"
     environment: # hot reloading: https://stackoverflow.com/a/44643246
       - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_BACKEND_URL=http://localhost:8080/api/
   nginx:
     image: nginx:1.20.1
     volumes:
