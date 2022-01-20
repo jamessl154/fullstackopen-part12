@@ -9,6 +9,8 @@ services:
       - MONGO_URL=mongodb://the_username:the_password@mongo:27017/the_database
     volumes:
       - ./todo-backend:/usr/src/backend-dev
+    expose: # "Expose ports without publishing them to the host machine - they’ll only be accessible to linked services"
+      - "3000" # https://docs.docker.com/compose/compose-file/compose-file-v3/#expose
   mongo:
     image: mongo
     # don't need to specify ports for mongo and redis, we don't need access from the host in this case
@@ -37,7 +39,7 @@ services:
   nginx:
     image: nginx:1.20.1
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-dev.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 8080:80
     container_name: reverse-proxy
