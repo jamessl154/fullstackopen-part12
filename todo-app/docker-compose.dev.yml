@@ -1,5 +1,5 @@
 services:
-  backend-dev:
+  todo-backend:
     image: todo-backend-development
     build:
       context: ./todo-backend
@@ -26,7 +26,7 @@ services:
     command: ['redis-server', '--appendonly', 'yes'] # https://redis.io/topics/persistence#append-only-file
     volumes:
       - ./todo-backend/redis_data:/data
-  frontend-dev:
+  todo-frontend:
     image: todo-frontend-development
     build:
       context: ./todo-frontend
