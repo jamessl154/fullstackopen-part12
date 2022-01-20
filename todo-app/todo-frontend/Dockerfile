@@ -18,7 +18,7 @@ COPY . .
 # ENV scoped per build-stage https://github.com/moby/moby/issues/37345#issuecomment-400245466
 # before the build step https://create-react-app.dev/docs/adding-custom-environment-variables/
 # ENV is read during build and embedded into the build
-ENV REACT_APP_BACKEND_URL=http://localhost:3000/
+ENV REACT_APP_BACKEND_URL=http://localhost:8080/api
 # on topic: https://www.freecodecamp.org/news/how-to-implement-runtime-environment-variables-with-create-react-app-docker-and-nginx-7f9d42a91d70/
 
 RUN npm run build
