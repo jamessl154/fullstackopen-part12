@@ -2,14 +2,12 @@ version: '3.8'
 
 services:
   backend:
-    image: phonebook-backend-development
+    image: phonebook-backend-production
     build:
       context: ./backend
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     environment:
       - MONGODB_URI=mongodb://the_username:the_password@mongo:27017/the_database
-    volumes:
-      - ./backend:/usr/src/app
     expose:
       - "3000"
   mongo:
@@ -22,19 +20,14 @@ services:
       - ./backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
       - ./backend/mongo_data:/data/db
   frontend:
-    image: phonebook-frontend-development
+    image: phonebook-frontend-production
     build:
       context: ./frontend
-      dockerfile: dev.Dockerfile
-    volumes:
-      - ./frontend:/usr/src/app
-    environment:
-      # - WDS_SOCKET_PORT=0 # https://github.com/facebook/create-react-app/issues/11779
-      - CHOKIDAR_USEPOLLING=true
+      dockerfile: Dockerfile
   nginx:
     image: nginx:1.20.1
     volumes:
-      - ./nginx-dev.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-prod.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 8080:80
     container_name: reverse-proxy
