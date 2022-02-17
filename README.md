@@ -10,4 +10,4 @@ We began by learning the basics of the [Docker CLI](https://docs.docker.com/engi
 - hello-front
    - Basic [CRA](https://create-react-app.dev/) hello world app. The Dockerfile builds an image that, when run, creates a container that serves the built app [using nginx](https://hub.docker.com/_/nginx).
 - phonebook/todo-app
-  - Phone directory/Todo app. Both frontends are built with CRA and the backends are built in Node with Express.
+  - Phone directory/Todo app. Both frontends are built with CRA and the backends are built in Node with Express. The ```docker-compose.dev.yml``` files use their respective ```dev.Dockerfiles``` to run the containerized apps in development mode (frontend and backend), using the webpack-dev-server/nodemon and bind mounts to trigger updates from the host machine into the container. The ```nginx-dev.conf``` file specifies how requests are proxied, via the port published by the nginx server, from the host to the frontends/backends inside of their containers.
